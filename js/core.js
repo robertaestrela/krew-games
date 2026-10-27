@@ -13,25 +13,25 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;',
 const prizeOf = (stake, mult = 1.8) => +(stake * mult).toFixed(2);
 
 /* ---------- personagens ---------- */
-const CREW = {engenheiro: 'var(--crew-engenheiro)', comandante: 'var(--crew-comandante)', piloto: 'var(--crew-piloto)', navegador: 'var(--crew-navegador)', explorador: 'var(--crew-explorador)', bar: 'var(--crew-bar)', reis: 'var(--crew-reis)', gamer: 'var(--crew-nobru)'};
+const CREW = {engenheiro: 'var(--crew-engenheiro)', comandante: 'var(--crew-comandante)', piloto: 'var(--crew-piloto)', navegador: 'var(--crew-navegador)', explorador: 'var(--crew-explorador)', bar: 'var(--crew-bar)', reis: 'var(--crew-reis)', gamer: 'var(--crew-nobru)', cerol: 'var(--crew-cerol)', paulinho: 'var(--crew-paulinho)'};
 const crewColor = (c, g) => c === 'gamer' ? (g === 'ela' ? 'var(--crew-inhui)' : 'var(--crew-nobru)') : CREW[c] || 'var(--border-strong)';
-const CREW_LABEL = {engenheiro: ['Engenheiro', 'Engenheira'], comandante: ['Comandante', 'Comandante'], piloto: ['Piloto', 'Piloto'], navegador: ['Navegador', 'Navegadora'], explorador: ['Explorador', 'Exploradora'], bar: ['Rei do bar', 'Rainha do bar'], reis: ['Rei do baralho', 'Rainha do baralho'], gamer: ['Nobru', 'Inhui']};
+const CREW_LABEL = {engenheiro: ['Engenheiro', 'Engenheira'], comandante: ['Comandante', 'Comandante'], piloto: ['Piloto', 'Piloto'], navegador: ['Navegador', 'Navegadora'], explorador: ['Explorador', 'Exploradora'], bar: ['Rei do bar', 'Rainha do bar'], reis: ['Rei do baralho', 'Rainha do baralho'], gamer: ['Nobru', 'Nobru'], cerol: ['Cerol', 'Cerol'], paulinho: ['Paulinho o Loko', 'Paulinho o Loko']};
 const crewName = (c, g) => c === 'nenhum' ? 'Sem skin' : CREW_LABEL[c][g === 'ela' ? 1 : 0];
 // textos do character-picker (DS)
 const ROLE_SUB = {
   engenheiro: 'DE LANÇAMENTO  ·  Faz qualquer nave decolar.', comandante: 'Mantém a calma em qualquer jogada.', piloto: 'DE VOO  ·  Sempre um passo à frente.',
   navegador: 'ESTELAR  ·  Sempre encontra o caminho.', explorador: 'DE MISSÃO  ·  Vai aonde ninguém foi.',
-  bar: 'Nunca erra a última bola.', reis: 'Sempre tem a carta certa na manga.', gamer: 'Streamer · joga ao vivo com a comunidade'
+  bar: 'Nunca erra a última bola.', reis: 'Sempre tem a carta certa na manga.', gamer: 'A voz do Brasil no cenário gamer', cerol: 'O maior streamer do Free Fire', paulinho: 'Joga ao vivo e não perdoa'
 };
 // pacotes de skins da Loja · ordem de prioridade: Nobru & Inhui // Magia do bar // Reis do baralho // Estelar
 const PACKS = {
-  nobru: {name: 'Top influencers', roles: ['gamer'], def: ['gamer', 'ele'], skins: 2, solo: false, caption: 'Nobru e Inhui · 2 skins', incl: 'Nobru e Inhui', artL: 'pack-nobru', artS: 'pack-nobru', posL: 'center', posS: 'center', mesa: 'gamer', page: 'Escolha seu personagem'},
+  nobru: {name: 'Top influencers', roles: ['gamer', 'cerol', 'paulinho'], def: ['gamer', 'ele'], skins: 3, solo: true, caption: 'Nobru, Cerol e Paulinho o Loko · 3 skins', incl: 'Nobru, Cerol e Paulinho o Loko', artL: 'pack-nobru', artS: 'pack-nobru', posL: 'center', posS: 'center', mesa: 'gamer', page: 'Escolha seu personagem'},
   magia: {duo: true, name: 'Magia do bar', roles: ['bar'], def: ['bar', 'ele'], skins: 2, caption: 'Rei e Rainha do bar · 2 skins', incl: 'Rei e Rainha do bar', artL: 'pack-magia-l', artS: 'pack-magia-s', posL: 'center 20%', posS: 'center 12%', mesa: 'bar', page: 'Escolha seu personagem'},
   reis: {duo: true, name: 'Reis do baralho', roles: ['reis'], def: ['reis', 'ele'], skins: 2, caption: 'Rei e Rainha do baralho · 2 skins', incl: 'Rei e Rainha do baralho', artL: 'pack-reis-l', artS: 'pack-reis-s', posL: 'center 20%', posS: 'center 12%', mesa: 'reis', page: 'Escolha seu personagem'},
   estelar: {name: 'Estelar', roles: ['engenheiro', 'comandante', 'piloto', 'navegador', 'explorador'], def: ['navegador', 'ela'], skins: 10, caption: 'Tripulação espacial · 10 skins', incl: '5 tripulantes · Ele e Ela', artL: 'pack-estelar', artS: 'pack-estelar', posL: 'center 40%', posS: 'center 30%', mesa: null, page: 'Escolha seu tripulante'}
 };
 const PACK_ORDER = ['nobru', 'magia', 'reis', 'estelar'];
-const packOf = c => c === 'gamer' ? 'nobru' : c === 'bar' ? 'magia' : c === 'reis' ? 'reis' : 'estelar';
+const packOf = c => ['gamer', 'cerol', 'paulinho'].includes(c) ? 'nobru' : c === 'bar' ? 'magia' : c === 'reis' ? 'reis' : 'estelar';
 const photo = (crew, g) => crew === 'nenhum' ? A + 'ui/avatar_empty.webp' : `${A}photo/${crew}_${g}.webp`;
 
 /* ---------- jogos ---------- */

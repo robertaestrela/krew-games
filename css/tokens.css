@@ -49,7 +49,7 @@
   --f-ui:"Inter", system-ui, -apple-system, sans-serif;
   --f-call:"Industry", "Sora", sans-serif;
   /* marca · 3CGG (sobrescreve) */
-  --back-top:#484848; --back-bottom:#232323; --btn-primary-text:#111113; --btn-primary-bg:#b4b4b4;
+  --back-top:#484848; --back-bottom:#232323; --btn-primary-text:#111113; --btn-primary-bg:#b4b4b4; --crew-nobru:#3d8bff; --crew-inhui:#3d8bff; --crew-cerol:#f2b33d; --crew-paulinho:#2f6bff;
 }
 /* estilos de texto do DS */
 .t-d3xl{font:700 64px/1.2 var(--f-display);letter-spacing:-.02em}

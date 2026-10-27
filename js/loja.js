@@ -16,7 +16,7 @@ function packCardS(id) {
   // Magia do bar e Reis do baralho mostram o Rei e a Rainha lado a lado (como no Figma)
   const bg = p.duo ? `background-image:url(${A}art/${p.artS}.webp),url(${A}art/${p.artL}.webp);background-size:50% auto,50% auto;background-position:left 12%,right 12%;background-repeat:no-repeat` : `background-image:url(${A}art/${p.artS}.webp);background-position:${p.posS}`;
   return `<div role="button" tabindex="0" class="spk S" data-pack="${id}"><span class="art" style="${bg}">${act ? tag('Ativo', 'success') : own ? tag('Seu', 'success') : tag('Novo', 'danger')}${own ? '' : `<span class="price">${fmt2(PRICE)}</span>`}</span>
-    <span class="tx"><b>${p.name}</b><small>${p.skins} skins</small></span></div>`;
+    <span class="tx"><b>${p.name}</b><small>${p.skins} skin${p.skins > 1 ? 's' : ''}</small></span></div>`;
 }
 const soonCard = (n, k) => `<div class="spk S blocked t${k}" aria-label="${n} · em breve"><span class="art">${tag('Em breve')}${ic('lock', 'lock')}</span><span class="tx"><b>Em breve</b><small>Novos personagens</small></span></div>`;
 const LOJA_CATS = [['skins', 'user', 'Skins'], ['baralhos', 'truco', 'Baralhos'], ['molduras', 'crown', 'Molduras'], ['efeitos', 'fire', 'Efeitos'], ['ofertas', 'gift', 'Ofertas']];
@@ -47,6 +47,7 @@ function includedHTML(id) {
   const p = PACKS[id];
   if (id === 'estelar') return `<div class="crew-rows">${['ele', 'ela'].map(g => `<div class="crew-row">${p.roles.map(r => `<div>${av(r, g, 'm')}<small>${crewName(r, g)}</small></div>`).join('')}</div>`).join('')}</div>`;
   const r = p.roles[0];
+  if (p.solo) return `<div class="crew-row duo">${p.roles.map(x => `<div>${av(x, 'ele', 'l')}<small>${crewName(x, 'ele')}</small></div>`).join('')}</div>`;
   return `<div class="crew-row duo">${['ele', 'ela'].map(g => `<div>${av(r, g, 'l')}<small>${crewName(r, g)}</small></div>`).join('')}</div>`;
 }
 SCREENS.pacote = {cls: 'pack', render: ({id}) => {
@@ -76,6 +77,8 @@ function heroAvatars(id) {
     <span class="av l" style="left:48px;top:64px"><img src="${photo('comandante', 'ele')}" alt=""></span><span class="av l" style="left:215px;top:64px"><img src="${photo('piloto', 'ela')}" alt=""></span>
     <span class="av xl" style="left:112px;top:36px"><img src="${photo('navegador', 'ela')}" alt=""></span>`;
   const r = p.roles[0];
+  if (p.solo) { const pos = p.roles.length === 1 ? [['xl', 112, 36]] : p.roles.length === 2 ? [['xl', 56, 44], ['xl', 168, 44]] : [['l', 48, 64], ['xl', 112, 36], ['l', 215, 64]], ord = p.roles.length === 3 ? [1, 0, 2] : p.roles.map((_, i) => i);
+    return '<i class="glw"></i>' + ord.map(i => `<span class="av ${pos[i][0]}" style="left:${pos[i][1]}px;top:${pos[i][2]}px"><img src="${photo(p.roles[i], 'ele')}" alt=""></span>`).join(''); }
   return `<i class="glw"></i><span class="av xl" style="left:56px;top:44px"><img src="${photo(r, 'ele')}" alt=""></span><span class="av xl" style="left:168px;top:44px"><img src="${photo(r, 'ela')}" alt=""></span>`;
 }
 function unlockedSheet(id) {
@@ -100,10 +103,10 @@ function openPicker(id, back) {
 }
 SCREENS.picker = {cls: 'picker-scr', render: () => {
   const p = PACKS[PICK.pack], estelar = PICK.pack === 'estelar', cc = crewColor(PICK.c, PICK.g);
-  const crew = estelar ? p.roles.map(r => [r, PICK.g]) : [[p.roles[0], 'ele'], [p.roles[0], 'ela']];
+  const crew = estelar ? p.roles.map(r => [r, PICK.g]) : p.solo ? p.roles.map(r => [r, 'ele']) : [[p.roles[0], 'ele'], [p.roles[0], 'ela']];
   return `<div class="pg-top">${header()}${ptop(p.page, null, 'pickBack')}</div>
     <div class="scr picker" style="position:relative;inset:auto;flex:1;min-height:0">
-      ${tabs([['ele', 'Ele'], ['ela', 'Ela']], PICK.g, PICK.g === 'ela' ? 'rosa' : '', 'pg')}
+      ${p.solo ? '' : tabs([['ele', 'Ele'], ['ela', 'Ela']], PICK.g, PICK.g === 'ela' ? 'rosa' : '', 'pg')}
       <div class="stg" style="--cc:${cc}"><video src="${stageVid(PICK.c, PICK.g)}" autoplay muted loop playsinline preload="auto" poster="${photo(PICK.c, PICK.g)}"></video>
         <button class="arrow p" data-a="pickStep:-1" aria-label="Anterior">${svg('i-chev-l-light')}</button><button class="arrow n" data-a="pickStep:1" aria-label="Próximo">${svg('i-chev-r-light')}</button>
         <div class="ident"><b>${crewName(PICK.c, PICK.g)}</b><small><i></i>${ROLE_SUB[PICK.c]}</small></div></div>
@@ -116,7 +119,7 @@ SCREENS.picker = {cls: 'picker-scr', render: () => {
   rerender();
 }};
 Object.assign(ACT, {
-  pickStep: d => { const p = PACKS[PICK.pack]; if (p.roles.length === 1) PICK.g = PICK.g === 'ele' ? 'ela' : 'ele'; else { const i = p.roles.indexOf(PICK.c); PICK.c = p.roles[(i + +d + p.roles.length) % p.roles.length]; } rerender(); },
+  pickStep: d => { const p = PACKS[PICK.pack]; if (p.solo) { PICK.g = 'ele'; if (p.roles.length > 1) { const i = p.roles.indexOf(PICK.c); PICK.c = p.roles[(i + +d + p.roles.length) % p.roles.length]; rerender(); } return; } if (p.roles.length === 1) PICK.g = PICK.g === 'ele' ? 'ela' : 'ele'; else { const i = p.roles.indexOf(PICK.c); PICK.c = p.roles[(i + +d + p.roles.length) % p.roles.length]; } rerender(); },
   pickBack: () => back(),
   embark: () => {
     ST.crew = PICK.c; ST.g = PICK.g; ST.owned[PICK.pack] = true;
