@@ -1,4 +1,4 @@
-/* 3CGG · Chat, Notificações, Perfil, Histórico, Card do jogador, Ajustes, Fichas (redireciona) e Ranking */
+/* Krew · Chat, Notificações, Perfil, Histórico, Card do jogador, Ajustes, Fichas (redireciona) e Ranking */
 'use strict';
 
 /* ======================================================================
@@ -11,7 +11,7 @@ function seedFeed(gid) {
   const base = [
     {who: 'dutra77', c: 'comandante', g: 'ele', t: gid === 'truco' ? 'alguém pra um truco valendo R$ 5?' : `alguém pra ${doG(gameById(gid)) === 'da' ? 'uma' : 'um'} ${gn.toLowerCase()} valendo R$ 5?`},
     {who: 'af_07', c: 'piloto', g: 'ela', t: gid === 'truco' ? 'bora! mas no Mineiro' : 'bora!'},
-    {type: 'oficial', who: '3CGG', t: `bônus no ar pra galera ${doG(gameById(gid))} ${gn}! Corre que é por ordem de chegada.`, bonus: {v: 5, left: 7, of: 10}},
+    {type: 'oficial', who: 'Krew', t: `bônus no ar pra galera ${doG(gameById(gid))} ${gn}! Corre que é por ordem de chegada.`, bonus: {v: 5, left: 7, of: 10}},
     {type: 'estrela', who: 'alfonso.dutra', c: 'navegador', g: 'ele', t: gid === 'truco' ? 'ganhei 5 seguidas no Paulista, tô on fire 🔥' : 'ganhei 5 seguidas hoje, tô on fire 🔥'},
     {who: 'luana.m', c: 'explorador', g: 'ela', t: 'quem topa uma partida depois?'},
     {who: 'dutra77', c: 'comandante', g: 'ele', t: 'entra aí na minha mesa 👇', table: {id: gameById(gid).pfx + '104', game: gid, v: 1, seats: '2/4'}},
@@ -20,7 +20,7 @@ function seedFeed(gid) {
   return base;
 }
 const feedOf = gid => CHAT.feeds[gid] || (CHAT.feeds[gid] = seedFeed(gid));
-const NICK_C = ['#b4b4b4', '#c9a8ff', '#8cf0a9'];
+const NICK_C = ['#84b5ff', '#c9a8ff', '#8cf0a9'];
 const nickColor = n => NICK_C[[...String(n)].reduce((a, c) => a + c.charCodeAt(0), 0) % 3];
 // chat-message (DS): Default · Estrela · Oficial · com anexo (chat-card de bônus ou mesa)
 function msgHTML(m, i) {
@@ -28,11 +28,11 @@ function msgHTML(m, i) {
   const of = m.type === 'oficial', es = m.type === 'estrela';
   const avt = of ? `<span class="av s of"><img src="${A}ui/logo_icon.webp" alt=""></span>` : m.me ? av(ST.crew, ST.g, 's') : av(m.c, m.g, 's');
   const badge = of ? `<span class="badge of">${ic('verified')}OFICIAL</span>` : es ? `<span class="badge es">${ic('star')}ESTRELA</span>` : '';
-  const nc = m.me || es ? '#eeeeee' : of ? '#b4b4b4' : nickColor(m.who);
+  const nc = m.me || es ? '#cae2ff' : of ? '#84b5ff' : nickColor(m.who);
   let card = '';
   if (m.bonus) { const taken = (CHAT.bonusTaken && !m.mine) || m.bonus.left <= 0; card = `<div class="ccard">${ic('gift')}<span class="tx"><small>Bônus</small><b class="prize">${fmt(m.bonus.v)}</b><span>${m.bonus.left} de ${m.bonus.of} restantes</span></span>${m.mine ? btn('Enviado', 'sec', 's', 'disabled') : btn(taken ? 'Resgatado' : 'Resgatar', taken ? 'sec' : 'pri', 's', taken ? 'disabled' : `data-a="chatBonus:${i}"`)}</div>`; }
   if (m.table) { const g = gameById(m.table.game); card = `<div class="ccard">${ic(GAME_ICON[g.id])}<span class="tx"><small>Mesa ${m.table.id}</small><b>${g.name}${g.id === 'truco' ? ' Paulista' : ''}</b><span>${fmt(m.table.v)} · ${m.table.seats} jogadores</span></span>${btn('Entrar', 'pri', 's', `data-a="chatTable:${i}"`)}</div>`; }
-  return `<div class="cmsg ${of ? 'of' : es ? 'es' : ''}"><div class="row"><button data-a="${m.me || of ? 'noop' : 'playerCard:' + esc(m.who)}" aria-label="${esc(m.who)}">${avt}</button><div class="ln">${badge}<span class="tx"><b style="color:${nc}">${esc(m.who)}:</b> <span${of ? ' style="color:#b4b4b4"' : ''}>${esc(m.t)}</span></span></div></div>${card}</div>`;
+  return `<div class="cmsg ${of ? 'of' : es ? 'es' : ''}"><div class="row"><button data-a="${m.me || of ? 'noop' : 'playerCard:' + esc(m.who)}" aria-label="${esc(m.who)}">${avt}</button><div class="ln">${badge}<span class="tx"><b style="color:${nc}">${esc(m.who)}:</b> <span${of ? ' style="color:#84b5ff"' : ''}>${esc(m.t)}</span></span></div></div>${card}</div>`;
 }
 SCREENS.chat = {cls: 'chat', render: () => {
   const g = gameById(CHAT.game), feed = feedOf(CHAT.game);

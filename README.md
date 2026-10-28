@@ -1,8 +1,8 @@
-# 3CGG · protótipo navegável
+# Krew · protótipo navegável
 
-Versão da marca 3CGG gerada a partir do protótipo EstrelaGames (`egames-tools/brandify.py`): cores do modo 3CGG, logo, header, verso das cartas, pacote principal da Loja, vídeo de boas-vindas e mesa da sinuca na cor da marca com o logo ao centro.
+Versão da marca Krew gerada a partir do protótipo EstrelaGames (`egames-tools/brandify.py`): cores do modo Krew, logo, header, verso das cartas, pacote principal da Loja, vídeo de boas-vindas e mesa da sinuca na cor da marca com o logo ao centro.
 
-Protótipo mobile do **3CGG** (redesign *Apple Gamer Style*), fiel ao Figma e ao Design System EstrelaGames (modo 3CGG). Todos os jogos liberados funcionam contra **bots**:
+Protótipo mobile do **Krew** (redesign *Apple Gamer Style*), fiel ao Figma e ao Design System Krew. Todos os jogos liberados funcionam contra **bots**:
 
 | Jogo | Modos |
 | --- | --- |
@@ -41,7 +41,7 @@ A Sinuca usa Three.js (carregado do jsDelivr), então precisa de internet.
 
 ```
 index.html        casca (telas são renderizadas pelos scripts)
-css/tokens.css    tokens do DS 3CGG (cores, tipografia) resolvidos 1:1
+css/tokens.css    tokens do DS Krew (cores, tipografia) resolvidos 1:1
 css/ui.css        componentes (header-game, navbar-glass, game-block, tabs, button-glass, stake-pill, table-glass…)
 css/screens.css   telas (cadastro, lobby, Home com skin, Loja, Batalhas, Chat, Perfil, Ranking, Redirecionando…)
 css/game.css      tela de jogo (match-top, match-nav, cartas, chamada de truco, resultado)

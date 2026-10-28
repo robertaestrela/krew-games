@@ -1,8 +1,8 @@
-/* 3CGG · componentes do DS em HTML (mesmos nomes e medidas do Figma) */
+/* Krew · componentes do DS em HTML (mesmos nomes e medidas do Figma) */
 'use strict';
 const ic = (n, cls = '', alt = '') => `<img class="ic ${cls}" src="${I(n)}" alt="${alt}">`;
 const svg = (id, cls = '') => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
-const GAME_HEX = {cacheta: '#8752f2', truco: '#e5484d', tranca: '#2cc160', buraco: '#1f9a4a', poker: '#0fa968', sinuca: '#2fa35a', todos: '#fefefe'};
+const GAME_HEX = {cacheta: '#8752f2', truco: '#e5484d', tranca: '#2cc160', buraco: '#1f9a4a', poker: '#0fa968', sinuca: '#2fa35a', todos: '#0047c1'};
 const GAME_ICON = {cacheta: 'cacheta', truco: 'truco', tranca: 'tranca', buraco: 'buraco', poker: 'poker', sinuca: 'sinuca', todos: 'all'};
 
 // header-avatar · hexágono com a cor da tripulação. Aceita tamanho em px (compatível com os motores) ou xs/s/m/l
@@ -22,7 +22,7 @@ function av(crew, g, size = 'm', opts = {}) {
 
 function header() {
   return `<header class="hdr">
-    <div class="side"><button class="logo" data-a="home" aria-label="Início"><img src="${A}ui/logo_icon.webp" alt="3CGG"></button>
+    <div class="side"><button class="logo" data-a="home" aria-label="Início"><img src="${A}ui/logo_icon.webp" alt="Krew"></button>
       <button class="cpill" data-a="wallet" aria-label="Saldo">${ic('banknote')}<span class="t"><small>Saldo</small><b>${fmt(ST.saldo)}</b></span><span class="plus">${svg('i-plus')}</span></button></div>
     <button data-a="${hasSkin() ? 'profile' : 'loja'}" aria-label="${hasSkin() ? 'Perfil' : 'Escolher skin na Loja'}">${hex(ST.crew, ST.g, 'm', 0, true, {add: true})}</button>
     <div class="side" style="justify-content:flex-end"><button class="cpill bonus" data-a="wallet" aria-label="Bônus">${ic('gift')}<span class="t"><small>Bônus</small><b>${fmt2(ST.bonus)}</b></span></button>

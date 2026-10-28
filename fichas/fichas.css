@@ -1,4 +1,4 @@
-/* 3CGG · Fichas (página fora do app). Usa os tokens e componentes do app (../css/tokens.css + ui.css: .btn, .tabs, .tag, .field, .xbtn, .hav, .toast).
+/* Krew · Fichas (página fora do app). Usa os tokens e componentes do app (../css/tokens.css + ui.css: .btn, .tabs, .tag, .field, .xbtn, .hav, .toast).
    Celular (Figma W01–W09, 375): header + abas + cartões empilhados, comprar/sacar em tela cheia.
    Computador ≥ 1024 (Figma DW01–DW09, 1920): menu 256 à esquerda, conteúdo 1312 (grade 864 + 416, gap 32), comprar/sacar num drawer de 480. */
 html,body{height:auto;min-height:100%}

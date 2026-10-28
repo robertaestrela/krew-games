@@ -1,4 +1,4 @@
-/* 3CGG · Batalhas: lobby (abertas + criar), criar batalha (5 passos), senha, sala de espera e série de partidas */
+/* Krew · Batalhas: lobby (abertas + criar), criar batalha (5 passos), senha, sala de espera e série de partidas */
 'use strict';
 // prêmio da batalha = entradas × jogadores − 10% da casa · cada vencedor recebe 1,8× a entrada (1º do Poker de 6 recebe 3,6×)
 const battlePrize = b => +(b.buyin * seatsOf(b.fmt) * .9).toFixed(2);

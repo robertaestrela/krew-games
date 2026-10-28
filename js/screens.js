@@ -1,4 +1,4 @@
-/* 3CGG · navegação, cadastro, Home/Lobby, fila e resultado */
+/* Krew · navegação, cadastro, Home/Lobby, fila e resultado */
 'use strict';
 const SCREENS = {}, ACT = {};
 let CUR = null, CURP = {}, HIST = [];

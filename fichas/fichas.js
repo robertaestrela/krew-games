@@ -1,4 +1,4 @@
-/* 3CGG · Fichas: página fora do app, no formato de fichasv2.cacheta.com (Figma: página Wallet, W01–W09 / DW01–DW09).
+/* Krew · Fichas: página fora do app, no formato de fichasv2.cacheta.com (Figma: página Wallet, W01–W09 / DW01–DW09).
    Saldo, comprar e sacar fichas com Pix, histórico, limites e dados. O app abre esta página pelo + do saldo (mesma aba)
    e deixa o saldo em sessionStorage (eg.fichas). "Voltar para o jogo" devolve o saldo novo e as compras/saques
    (eg.fichas.events) e o app reabre onde estava (../?resume). Sem sessionStorage, a página abre com os dados de exemplo. */
@@ -65,14 +65,14 @@ function back(to) { SS.set('eg.back', {to: to || null}); save(); location.href =
 
 function side() {
   const p = page(), it = (k, i, l) => `<a class="it ${k === p ? 'on' : ''}" href="#${k}" ${k === p ? 'aria-current="page"' : ''}>${ic(i)}<span>${l}</span></a>`;
-  return `<div class="brand"><img src="${A}ui/logo_icon.webp" alt=""><span><b>3CGG</b><small>Fichas</small></span></div>
+  return `<div class="brand"><img src="${A}ui/logo_icon.webp" alt=""><span><b>Krew</b><small>Fichas</small></span></div>
     <nav>${it('fichas', 'coins', 'Fichas')}${it('historico', 'timer', 'Histórico')}<span class="lb">Conta</span>${it('limites', 'lock', 'Meus limites')}${it('dados', 'user', 'Meus dados')}</nav>
     <div class="sft">${btn('Voltar para o jogo', 'sec', 'm', 'data-a="back"', 'wide')}<small>+18 · Jogue com responsabilidade</small></div>`;
 }
 function mtop() {
   const p = page();
   return `<div class="row"><button class="bk" data-a="back" aria-label="Voltar para o jogo">${svg('i-chev-l-light')}</button>
-      <div class="brand"><img src="${A}ui/logo_icon.webp" alt=""><span><b>3CGG</b><small>Fichas</small></span></div>${hav(32, 35)}</div>
+      <div class="brand"><img src="${A}ui/logo_icon.webp" alt=""><span><b>Krew</b><small>Fichas</small></span></div>${hav(32, 35)}</div>
     <div class="tabs" role="tablist">${Object.entries(PAGES).map(([k, l]) => `<button role="tab" class="${k === p ? 'on' : ''}" aria-selected="${k === p}" data-go="${k}">${l}</button>`).join('')}</div>`;
 }
 const me = () => `<div class="me">${hav(32, 35)}<span><b>${esc(F.nick)}</b><small>ID 529024054</small></span></div>`;
@@ -110,7 +110,7 @@ const VIEW = {
         <small class="bnote">Fichas de bônus não podem ser sacadas.</small>
         <div class="acts">${btn('Comprar fichas', 'pri', 'l', 'data-a="buy"')}${btn('Sacar', 'sec', 'l', 'data-a="out"')}</div></section>
       ${limitsCard('Limites de hoje')}
-      <section class="banner"><img src="${A}art/pack-nobru.webp" alt=""><div class="gl"><span><b>Top influencers chegaram</b><small>Pacote novo na Loja<span class="od"> do 3CGG</span></small></span>${btn('Ver na Loja', 'sec', 's', 'data-a="back:loja"')}</div></section>
+      <section class="banner"><img src="${A}art/pack-nobru.webp" alt=""><div class="gl"><span><b>Top influencers chegaram</b><small>Pacote novo na Loja<span class="od"> do Krew</span></small></span>${btn('Ver na Loja', 'sec', 's', 'data-a="back:loja"')}</div></section>
       <section class="card help">${ic('headset')}<span class="tx"><small class="k">Suporte</small><b>Precisa de ajuda?</b><span>Dúvidas sobre compra, saque ou limites?<span class="od"> Fale com a gente pelo chat.</span></span></span>${btn('Abrir chat', 'sec', 's', 'data-a="help"')}</section>
       <section class="card txs"><div class="th"><b>Últimas transações</b><a href="#historico"><span class="od">Ver histórico completo</span><span class="om">Ver tudo</span> →</a></div>${txList(F.tx.slice(0, 3))}</section>
     </div>`;
@@ -135,7 +135,7 @@ const VIEW = {
     <div class="col"><section class="card dados">${[['Apelido', esc(F.nick)], ['ID', '529024054'], ['Nome', 'BE**** SI**** ****'], ['CPF', '123.***.***-00'], ['E-mail', 'b*****4@gmail.com'], ['Celular', '+55 31 9****-6899']].map(([k, v]) => `<div><small>${k}</small><b>${v}</b></div>`).join('')}</section>
     <p class="tip">Para alterar seus dados, fale com o suporte pelo chat.</p></div>`
 };
-const foot = () => `<span class="lk"><a href="#" data-a="terms">Termos &amp; Condições</a><a href="#" data-a="terms">Política de Privacidade</a></span><span class="pix">${svg('i-pix')}Pagamentos via Pix<span class="om"> · +18</span> · 3CGG © 2026</span>`;
+const foot = () => `<span class="lk"><a href="#" data-a="terms">Termos &amp; Condições</a><a href="#" data-a="terms">Política de Privacidade</a></span><span class="pix">${svg('i-pix')}Pagamentos via Pix<span class="om"> · +18</span> · Krew © 2026</span>`;
 
 function render() {
   $('#side').innerHTML = side(); $('#mtop').innerHTML = mtop();

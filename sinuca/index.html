@@ -5,22 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 </head>
 <body>
-<title>Sinuca · 3CGG</title>
+<title>Sinuca · Krew</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
 <style>
-/* Layout: one phone-sized app (375 logical width): lobby → fila → partida 3D (Three.js + física própria) → resultado. Tokens = DS 3CGG (Apple Gamer Style), single dark look. */
+/* Layout: one phone-sized app (375 logical width): lobby → fila → partida 3D (Three.js + física própria) → resultado. Tokens = DS Krew (Apple Gamer Style), single dark look. */
 :root{
   color-scheme: dark;
   --page:#05080c; --bg:#19191b; --inset:#010101; --raised:#292a2e;
   --glass:rgba(40,60,82,.5); --glass-strong:rgba(40,60,82,.75);
   --text:#eeeef0; --subtle:#5f606a; --muted:rgba(255,255,255,.08); --hl:rgba(255,255,255,.16); --hl2:rgba(255,255,255,.32);
-  --blue:#fefefe; --blue-top:#f5f5f5; --blue-bg:#616161; --ok:#2cc160; --ok-text:#52de7e;
+  --blue:#0047c1; --blue-top:#0038a6; --blue-bg:#0056e6; --ok:#2cc160; --ok-text:#52de7e;
   --red:#e5484d; --red-top:#ef4452; --red-bg:#c72c3d; --gold:#ffc841;
-  --g-sinuca:#2fa35a; --felt:#0b0b0d; --felt-l:#26262a; --felt-d:#050506;
+  --g-sinuca:#2fa35a; --felt:#0a3a9a; --felt-l:#2f66d8; --felt-d:#04184a;
   --c-engenheiro:#4fb3ff; --c-comandante:#f5c542; --c-piloto:#ff5a36; --c-navegador:#e86bff; --c-explorador:#4dffb8; --c-bar:#ff9f43; --c-reis:#34d399; --c-gamer:#3d8bff;
   --f-display:"Sora", "Inter", system-ui, sans-serif; --f-ui:"Inter", system-ui, -apple-system, sans-serif;
 }
@@ -287,7 +287,7 @@ const STAKES = [{v:.25, q:154, tag:'Iniciante'}, {v:1, q:158}, {v:5, q:67}, {v:1
 const PEOPLE = [['dutra77','comandante','ele'],['rafa_10','piloto','ele'],['amanda.s','engenheiro','ela'],['lu.reis','explorador','ela'],['af_07','navegador','ele']];
 const BOT = {name:'dutra77', crew:'comandante', g:'ele'};
 const ST = {stake:1, saldo:1250, sound:true, mic:false, matches:0};
-// embedded in the main 3CGG app: skip this lobby, report results/exit to the parent with postMessage
+// embedded in the main Krew app: skip this lobby, report results/exit to the parent with postMessage
 // #embed-<stake> or #embed=<stake>&nick=&crew=&g=&opp=&mesa=&q=0 (mesa = the app's table id, q=0 skips the queue)
 const EMBED = /^#embed/.test(location.hash), EP = {};
 if (EMBED) {
@@ -320,7 +320,7 @@ window.addEventListener('resize', fit);
 /* ---------- lobby ---------- */
 function show(id) { $('#scr-lobby').hidden = id !== 'lobby'; $('#scr-game').hidden = id !== 'game'; if (id === 'game') requestAnimationFrame(resize3d); }
 function renderHead() {
-  $('#head').innerHTML = `<img src="${A}ui/logo_icon.webp" alt="3CGG" style="width:30px;height:30px">
+  $('#head').innerHTML = `<img src="${A}ui/logo_icon.webp" alt="Krew" style="width:30px;height:30px">
     <button class="res" data-t="Carteira · fora do teste" aria-label="Saldo"><img src="${A}ui/banknote.webp" alt=""><span class="t"><span class="label">Saldo</span><b>${fmt(ST.saldo)}</b></span><span class="plus">+</span></button>
     <button data-t="Perfil · fora do teste" aria-label="Perfil" style="position:relative">${hex('nenhum', '', 44, 48)}<span class="avplus">+</span></button>
     <button class="res" data-t="Bônus · fora do teste" aria-label="Bônus"><img src="${A}ui/gift.webp" alt=""><span class="t"><span class="label">Bônus</span><b class="gold">R$ 35,00</b></span></button>
@@ -849,7 +849,7 @@ function recolorTable(old) {
   for (let i = 0; i < p.length; i += 4) {
     const r = p[i], gg = p[i + 1], b = p[i + 2], mx = Math.max(r, gg, b), mn = Math.min(r, gg, b);
     let coat = 0, rough = 170;
-    if (r > 45 && r > gg * 1.7 && r > b * 1.7) { const l = Math.min(1.3, r / 140); p[i] = 22 * l; p[i + 1] = 22 * l; p[i + 2] = 25 * l; rough = 245; }
+    if (r > 45 && r > gg * 1.7 && r > b * 1.7) { const l = Math.min(1.3, r / 140); p[i] = 10 * l; p[i + 1] = 44 * l; p[i + 2] = 118 * l; rough = 245; }
     else if (mn > 190) { p[i] = 17; p[i + 1] = 25; p[i + 2] = 46; coat = 255; rough = 105; }
     else if (r > 140 && gg > 60 && b < gg && r > b * 1.6) { p[i] = 205; p[i + 1] = 218; p[i + 2] = 240; coat = 200; rough = 90; } // orange sights → pearl
     else if (mx - mn < 20 && mx > 60) { const l = mx / 128; p[i] = 13 * l; p[i + 1] = 17 * l; p[i + 2] = 27 * l; coat = 180; rough = 120; }
@@ -858,7 +858,7 @@ function recolorTable(old) {
   g.putImageData(d, 0, 0); g2.putImageData(e, 0, 0);
   const tex = cv => { const t = new THREE.CanvasTexture(cv); t.flipY = false; t.wrapS = old.map.wrapS; t.wrapT = old.map.wrapT; t.anisotropy = 8; return t; };
   const map = tex(c), cr = tex(c2); map.colorSpace = THREE.SRGBColorSpace;
-  return mat({map, normalMap: old.normalMap, normalScale: new THREE.Vector2(.8, .8), roughness: 1, roughnessMap: cr, clearcoat: .55, clearcoatMap: cr, clearcoatRoughness: .2, envMapIntensity: .8, sheen: .25, sheenRoughness: .6, sheenColor: new THREE.Color(0x8a8a94)});
+  return mat({map, normalMap: old.normalMap, normalScale: new THREE.Vector2(.8, .8), roughness: 1, roughnessMap: cr, clearcoat: .55, clearcoatMap: cr, clearcoatRoughness: .2, envMapIntensity: .8, sheen: .25, sheenRoughness: .6, sheenColor: new THREE.Color(0x6f9bff)});
 }
 // CC0 Poly Haven props: bar stools and leather sofas in the dark
 function buildBar() {
@@ -929,7 +929,7 @@ function noiseFill(g, w, h, amp) { const id = g.getImageData(0, 0, w, h), d = id
 function feltTexture() {
   const cw = 1024, ch = 2048, px = x => (x + IX) / (2 * IX) * cw, py = z => (z + IZ) / (2 * IZ) * ch;
   const tex = canvasTex(cw, ch, g => {
-    g.fillStyle = '#0b0b0d'; g.fillRect(0, 0, cw, ch);
+    g.fillStyle = '#0a3a9a'; g.fillRect(0, 0, cw, ch);
     for (let i = 0; i < 110; i++) { // soft mottling of real cloth
       const x = Math.random() * cw, y = Math.random() * ch, r = rnd(60, 240), gr = g.createRadialGradient(x, y, 0, x, y, r), l = Math.random() < .5;
       gr.addColorStop(0, l ? 'rgba(255,255,255,.03)' : 'rgba(0,0,0,.05)'); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(x - r, y - r, 2 * r, 2 * r);
@@ -948,7 +948,7 @@ function feltTexture() {
   const img = new Image(); img.onload = () => { // Estrela mark printed on the cloth
     const g = tex.image.getContext('2d'), s = 300, o = document.createElement('canvas'); o.width = s; o.height = s * img.height / img.width; const og = o.getContext('2d');
     og.drawImage(img, 0, 0, o.width, o.height); og.globalCompositeOperation = 'source-in'; og.fillStyle = '#ffffff'; og.fillRect(0, 0, o.width, o.height);
-    g.globalAlpha = 0.13; g.drawImage(o, px(0) - o.width / 2, py(0) - o.height / 2); g.globalAlpha = 1; tex.needsUpdate = true;
+    g.globalAlpha = 0.12; g.drawImage(o, px(0) - o.width / 2, py(0) - o.height / 2); g.globalAlpha = 1; tex.needsUpdate = true;
   }; img.src = A + 'ui/logo-mark.svg';
   return tex;
 }
@@ -984,7 +984,7 @@ function buildTable() {
   const felt = mat({...cloth, map: feltTexture(), normalMap: tx('poplin_nor.jpg', [9, 18]), roughnessMap: tx('poplin_rough.jpg', [9, 18])});
   const cushionMat = mat({...cloth, color: 0x18396f, normalMap: tx('poplin_nor.jpg', [7, 7]), roughnessMap: tx('poplin_rough.jpg', [7, 7])});
   // dark navy leather on rails, apron and legs
-  const leather = (color, r) => { const b = leatherGrain().clone(); repeatTex(b, r, r); return mat({color, roughness: .6, bumpMap: b, bumpScale: 1.4, sheen: .4, sheenRoughness: .55, sheenColor: new THREE.Color(0x8a8a94), clearcoat: .22, clearcoatRoughness: .45, envMapIntensity: .55}); };
+  const leather = (color, r) => { const b = leatherGrain().clone(); repeatTex(b, r, r); return mat({color, roughness: .6, bumpMap: b, bumpScale: 1.4, sheen: .4, sheenRoughness: .55, sheenColor: new THREE.Color(0x6f9bff), clearcoat: .22, clearcoatRoughness: .45, envMapIntensity: .55}); };
   const railMat = leather(0x16213d, 6);
   const castMat = mat({color: 0x23262b, metalness: 1, roughness: .26, envMapIntensity: 1.2});
   const black = new THREE.MeshBasicMaterial({color: 0x000000});
@@ -1066,12 +1066,12 @@ function ballTexture(id) {
   else { g.fillStyle = col; g.fillRect(0, 0, 512, 256); }
   for (const u of [.25, .75]) {
     const x = u * 512, y = 128;
-    if (id === 0) { g.fillStyle = '#fefefe'; g.beginPath(); g.arc(x, y, 11, 0, 7); g.fill(); continue; }
+    if (id === 0) { g.fillStyle = '#0047c1'; g.beginPath(); g.arc(x, y, 11, 0, 7); g.fill(); continue; }
     g.fillStyle = '#fbfaf6'; g.beginPath(); g.arc(x, y, 36, 0, 7); g.fill();
     g.fillStyle = '#111'; g.font = '700 44px Inter, Arial, sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(id), x, y + 2);
     if (id === 6 || id === 9) g.fillRect(x - 12, y + 22, 24, 3);
   }
-  if (id === 0) { g.fillStyle = '#fefefe'; g.fillRect(0, 0, 512, 6); g.fillRect(0, 250, 512, 6); }
+  if (id === 0) { g.fillStyle = '#0047c1'; g.fillRect(0, 0, 512, 6); g.fillRect(0, 250, 512, 6); }
   const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4; return t;
 }
 function buildBalls() {

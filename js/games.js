@@ -1,4 +1,4 @@
-/* 3CGG · motores de jogo com bots (portados do protótipo testado): Truco Paulista/Mineiro 1x1 e 2x2,
+/* Krew · motores de jogo com bots (portados do protótipo testado): Truco Paulista/Mineiro 1x1 e 2x2,
    Cacheta e Pif-Paf 1x1, Buraco Aberto/Fechado e Tranca 2x2, Poker Texas Hold'em 1x1 e mesa de 6.
    O tabuleiro é um palco 375×649 (medidas do Figma) escalado para caber na tela. */
 'use strict';
@@ -1372,7 +1372,7 @@ ACT.leaveGo = () => {
   endAllGames(); $('#overlay').innerHTML = '';
   if (ser) { go('batalhas', {}, {noHist: true, reset: true}); toast(`Você saiu da ${ser.b.name}`); } else leaveGame();
 };
-const DECKS = [['estrela', '3CGG']];
+const DECKS = [['estrela', 'Krew']];
 function deckBack(k, size = 'S') { const cur = ST.deck; ST.deck = k; const h = cardHTML(null, size, true); ST.deck = cur; return h; }
 function refreshBacks() { document.querySelectorAll('.card.back').forEach(el => { el.classList.remove('dk-tradicional'); if (ST.deck !== 'estrela') el.classList.add('dk-' + ST.deck); }); }
 /* ---------- customize-sheet · Personalizar (avatar · mesa · baralho) · muda na hora ---------- */

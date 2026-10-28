@@ -1,4 +1,4 @@
-/* 3CGG · início: o app abre no cadastro, sem personagem, e vai herdando as escolhas */
+/* Krew · início: o app abre no cadastro, sem personagem, e vai herdando as escolhas */
 'use strict';
 function fit() {
   const ph = $('#phone');

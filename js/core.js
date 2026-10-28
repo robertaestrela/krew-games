@@ -1,4 +1,4 @@
-/* 3CGG · núcleo: helpers, dados e estado. Scripts clássicos compartilham o escopo global (sem build). */
+/* Krew · núcleo: helpers, dados e estado. Scripts clássicos compartilham o escopo global (sem build). */
 'use strict';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];

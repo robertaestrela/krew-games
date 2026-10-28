@@ -244,11 +244,11 @@
 .cmsg .ln{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:flex-start;gap:6px;padding-top:6px;font:500 14px/1.3 var(--f-ui);color:var(--text-default)}
 .cmsg .ln .tx{flex:1;min-width:0;word-wrap:break-word}
 .cmsg .ln b{font-weight:500}
-.cmsg.of{background:#fefefe1f;box-shadow:inset 3px 0 0 #fefefe}
+.cmsg.of{background:#0047c11f;box-shadow:inset 3px 0 0 #0047c1}
 .cmsg.es{background:#ffc8411f;box-shadow:inset 3px 0 0 #ffc841}
 .cmsg .badge{flex:none;display:inline-flex;align-items:center;gap:4px;height:18px;padding:2px 8px 2px 4px;border-radius:999px;font:500 10px/1 var(--f-ui);margin-top:-1px}
 .cmsg .badge .ic{width:14px;height:14px}
-.cmsg .badge.of{background:#fefefe;color:var(--btn-primary-text)}
+.cmsg .badge.of{background:#0047c1;color:var(--btn-primary-text)}
 .cmsg .badge.es{background:#ffc841;color:#111113}
 .av.s.of img{object-fit:contain;padding:5px;background:var(--bg-raised)}
 .ccard{display:flex;align-items:center;gap:12px;padding:12px;margin-left:40px;border-radius:16px;background:var(--bga-strong-50);box-shadow:inset 0 0 0 1px var(--border-muted)}
@@ -396,7 +396,7 @@
 .rrow .pts b{font:600 14px/1.2 var(--f-display)}
 .rrow .pts small{font:500 10px/1 var(--f-ui);color:var(--text-success)}
 .rrow .pts small.dn{color:var(--text-error)}.rrow .pts small.eq{color:var(--text-subtle)}
-.rrow.me{border-radius:16px;background:#fefefe2e;box-shadow:inset 0 0 0 1px var(--btn-primary-top)}
+.rrow.me{border-radius:16px;background:#0047c12e;box-shadow:inset 0 0 0 1px var(--btn-primary-top)}
 .rme{flex:none;padding:4px 8px calc(8px + env(safe-area-inset-bottom,0px));box-shadow:inset 0 1px 0 #ffffff29}
 /* card do jogador */
 .pcard{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px 16px 24px;text-align:center}
