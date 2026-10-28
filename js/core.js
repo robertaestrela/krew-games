@@ -30,7 +30,7 @@ const PACKS = {
   reis: {duo: true, name: 'Reis do baralho', roles: ['reis'], def: ['reis', 'ele'], skins: 2, caption: 'Rei e Rainha do baralho · 2 skins', incl: 'Rei e Rainha do baralho', artL: 'pack-reis-l', artS: 'pack-reis-s', posL: 'center 20%', posS: 'center 12%', mesa: 'reis', page: 'Escolha seu personagem'},
   estelar: {name: 'Estelar', roles: ['engenheiro', 'comandante', 'piloto', 'navegador', 'explorador'], def: ['navegador', 'ela'], skins: 10, caption: 'Tripulação espacial · 10 skins', incl: '5 tripulantes · Ele e Ela', artL: 'pack-estelar', artS: 'pack-estelar', posL: 'center 40%', posS: 'center 30%', mesa: null, page: 'Escolha seu tripulante'}
 };
-const PACK_ORDER = ['nobru', 'magia', 'reis', 'estelar'];
+const PACK_ORDER = ['nobru', 'magia', 'reis'];
 const packOf = c => ['gamer', 'cerol', 'paulinho'].includes(c) ? 'nobru' : c === 'bar' ? 'magia' : c === 'reis' ? 'reis' : 'estelar';
 const photo = (crew, g) => crew === 'nenhum' ? A + 'ui/avatar_empty.webp' : `${A}photo/${crew}_${g}.webp`;
 

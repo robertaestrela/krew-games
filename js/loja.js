@@ -30,7 +30,7 @@ SCREENS.loja = {cls: 'loja', render: () => {
     // ordem: Nobru & Inhui em destaque · Magia do bar · Reis do baralho · Estelar
     body = `${packCardL('nobru')}
       <div class="packs">${stitle('Pacotes de skins', 'Ganhe jogando ou compre')}
-        <div class="pgrid">${['magia', 'reis', 'estelar'].map(packCardS).join('')}${['Velho Oeste', 'Neon', 'Piratas'].map((n, k) => soonCard(n, k)).join('')}</div>
+        <div class="pgrid">${['magia', 'reis'].map(packCardS).join('')}${['Velho Oeste', 'Neon', 'Piratas', 'Mais personagens'].map((n, k) => soonCard(n, k % 3)).join('')}</div>
         <p class="note">Ao desbloquear, todos os personagens do pacote ficam seus. Você escolhe com qual jogar e pode trocar quando quiser.</p></div>`;
   }
   return `<div class="pg-top">${header()}${ptop('Loja', null, 'home')}</div><div class="scroll"><div class="content">${cats}${body}</div></div>${navbar('loja')}`;

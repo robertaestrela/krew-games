@@ -13,7 +13,7 @@ Protótipo mobile do **Krew** (redesign *Apple Gamer Style*), fiel ao Figma e ao
 | Poker | Texas Hold'em Sit & Go · 1x1 e mesa de 6 |
 | Sinuca | Bola 8 · 1x1 em mesa 3D (Brasileira em breve) |
 
-**Fluxo:** o app abre no cadastro (boas-vindas → celular → código → senha → apelido), **sem personagem**. A Loja desbloqueia os pacotes de skins (Top influencers (Nobru, Cerol e Paulinho o Loko), Magia do bar, Reis do baralho, Estelar); ao embarcar, a aba **Jogos** vira a Home com o vídeo do personagem e as escolhas (avatar, mesa, baralho) passam para todos os jogos.
+**Fluxo:** o app abre no cadastro (boas-vindas → celular → código → senha → apelido), **sem personagem**. A Loja desbloqueia os pacotes de skins (Top influencers (Nobru, Cerol e Paulinho o Loko), Magia do bar, Reis do baralho); ao embarcar, a aba **Jogos** vira a Home com o vídeo do personagem e as escolhas (avatar, mesa, baralho) passam para todos os jogos.
 
 **Batalhas:** lobby com busca e filtro por jogo, criação em 5 passos (jogo → modo e formato → rodadas 1/3/5/10 → buy-in → aberta ou fechada com senha), sala de espera que enche com bots e **série de partidas**: vence quem ganhar mais rodadas e leva o prêmio.
 
